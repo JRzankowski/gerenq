@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-
-import Main from "./compontents/Main";
+import './scss/main.scss'
+import MainPanel from "./compontents/MainPanel";
 
 export default class App extends Component {
     render() {
@@ -13,7 +13,7 @@ export default class App extends Component {
         // });
         return (
             <div className="App">
-          <Main/>
+                <MainPanel/>
             </div>
         );
     }

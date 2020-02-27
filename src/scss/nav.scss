@@ -1,0 +1,48 @@
+.nav-container {
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 256px;
+  background-color: $primaryBlack;
+  z-index: 6;
+  transition: .3s;
+  @media(max-width: 920px){
+    position: fixed;
+    transform: translateX(-256px);
+    &.active{
+      transform: translateX(0);
+    }
+
+  }
+
+  .nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+      padding: 35px 0 0 0 ;
+      margin-bottom: 20px;
+
+
+      .logo__container {
+        display: flex;
+        height: 40px;
+        align-items: center;
+        //justify-content: center;
+
+        &--img {
+          filter: invert(1);
+          background-size: cover;
+          width: 120px;
+
+
+        }
+
+      }
+    }
+
+  }
+}

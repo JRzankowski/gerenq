@@ -1,0 +1,38 @@
+.account-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  color: #bbbbbb;
+  align-items: center;
+  &__email {
+    font-size: .8em;
+    display: block;
+    letter-spacing: .5px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: .2s;
+    &:hover {
+      color: $primaryBlue;
+    }
+  }
+  &__log-out{
+    font-size: .7em;
+    padding: 0 8px;
+    border-radius: 18px ;
+    background-color: $primaryBlack;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    color: #bbbbbb;
+    margin-right: 10px;
+    transition: .1s;
+    &:hover{
+      color: $primaryBlue;
+    }
+  }
+}

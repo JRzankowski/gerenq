@@ -1,0 +1,42 @@
+
+.main-view {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: $primaryDarkBlack;
+  display: flex;
+
+  .main-panel {
+    flex-grow: 1;
+    transition: .2s;
+    cursor: unset;
+
+  }
+  .main-panel.darker{
+    filter: brightness(0.4);
+    cursor: pointer
+  }
+
+  .nav-burger {
+    display: none;
+    @media(max-width: 920px) {
+      position: absolute;
+      display: block;
+      cursor: pointer;
+      left: 40px;
+      top: 10px;
+
+      svg {
+        font-size: 2.5rem;
+        color: #bbbbbb;
+        transition: .1s;
+        &:hover{
+          color: $primaryBlue;
+        }
+      }
+    }
+
+  }
+}
+
+;
