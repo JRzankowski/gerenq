@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {QuizSubjects} from "./QuizSubject";
 import {QuizSection} from "./QuizSection";
-import {QuizGame} from "./QuizGame";
+import QuizGame from "./QuizGame";
 
 
 export const Quiz = () => {
