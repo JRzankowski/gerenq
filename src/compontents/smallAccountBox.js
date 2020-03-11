@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import Nav from './Nav'
-import Start from "./Start";
-import { FaBeer } from 'react-icons/fa'
+import {FaBeer} from 'react-icons/fa'
 
 export default class SmallAccountBox extends Component {
 

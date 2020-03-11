@@ -1,30 +1,31 @@
 
 .main-view {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-color: $primaryDarkBlack;
   display: flex;
-
   .main-panel {
     flex-grow: 1;
     transition: .2s;
     cursor: unset;
+    width: 100%;
+
 
   }
   .main-panel.darker{
     filter: brightness(0.4);
     cursor: pointer
   }
-
   .nav-burger {
     display: none;
     @media(max-width: 920px) {
       position: absolute;
       display: block;
       cursor: pointer;
-      left: 40px;
+      left: 25px;
       top: 10px;
+      z-index:5;
 
       svg {
         font-size: 2.5rem;

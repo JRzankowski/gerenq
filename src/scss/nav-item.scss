@@ -1,5 +1,4 @@
 .nav__item {
-  padding: 0 25px;
   cursor: pointer;
   font-size: 1.3em;
   position: relative;
@@ -20,23 +19,32 @@
     &:after{
       width: 4%;
     }
-
   }
   &:hover {
     background-color: #25282e;
   }
-  &:hover .item__container{
-    color: $primaryBlue
-  }
-  .item__container {
+  .item-name{
     color: #bbbbbb;
     letter-spacing: .4px;
+    text-decoration: none;
+    display: inline-block;
+    width: calc(100% - 25px);
+    height: 100%;
+    padding: 25px 25px
+  }
+  .item__container{
+  }
+  &:hover .item-name{
+    color: $primaryBlue
+
   }
 }
 .nav__item.active{
   background-color: #25282e;
   .item__container {
-    color: $primaryBlue;
+    .item-name {
+      color: $primaryBlue;
+    }
   }
   &:after{
     content : '';
