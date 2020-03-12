@@ -31,7 +31,6 @@ export default class Nav extends Component {
         })
     };
 
-
     render() {
         return (
             <>
@@ -44,8 +43,8 @@ export default class Nav extends Component {
                         </div>
                             <NavItem itemName='Start' activeItem={this.state.activeItem} isActive={this.isActive}/>
                             <NavItem itemName='Quiz' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Wyniki' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Opcje' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                            <NavItem itemName='Summary' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                            <NavItem itemName='Options' activeItem={this.state.activeItem} isActive={this.isActive}/>
                             <NavItem itemName='Lorem' activeItem={this.state.activeItem} isActive={this.isActive}/>
                     </nav>
                 </div>
@@ -53,6 +52,5 @@ export default class Nav extends Component {
             </>
         );
     }
-
 }
 

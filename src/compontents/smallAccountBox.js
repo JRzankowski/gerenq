@@ -11,5 +11,4 @@ export default class SmallAccountBox extends Component {
             </div>
         );
     }
-
 }

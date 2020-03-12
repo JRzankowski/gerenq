@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {Redirect} from "react-router-dom";
 import Nav from './Nav'
 import Start from "./Start/Start";
 import {Quiz} from "./Quiz/Quiz";

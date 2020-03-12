@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {FaArrowAltCircleLeft } from "react-icons/fa";
+import {FaArrowAltCircleLeft} from "react-icons/fa";
 
 export const QuizSection = (props) => {
     const [sections, setSections] = useState(["Easy", "Medium", "Hard"]);
-    const handleBack = ()=>{
-        if(props.subject.length > 0){
+    const handleBack = () => {
+        if (props.subject.length > 0) {
             props.setSubject("")
         }
     };
@@ -12,7 +12,8 @@ export const QuizSection = (props) => {
     return (
         <div className="quiz-panel__container">
             <div className="quiz-panel__heading">
-                <p className="quiz-panel__heading--text">Available sections <span  className="quiz-panel__heading--icon"><FaArrowAltCircleLeft onClick={handleBack}/></span></p>
+                <p className="quiz-panel__heading--text">Available sections <span className="quiz-panel__heading--icon"><FaArrowAltCircleLeft
+                    onClick={handleBack}/></span></p>
             </div>
             <div className="quiz-panel__content">
                 {
@@ -20,7 +21,7 @@ export const QuizSection = (props) => {
                         return (
                             <>
                                 <div key={index} className="quiz__section">
-                                    <button  onClick={() => props.setSection(value)}>{value}</button>
+                                    <button onClick={() => props.setSection(value)}>{value}</button>
                                 </div>
                             </>
                         )
@@ -28,9 +29,6 @@ export const QuizSection = (props) => {
                 }
             </div>
         </div>
-
-
     )
-
 };
 

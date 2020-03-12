@@ -21,7 +21,6 @@ export const QuizSubjects = (props) => {
                 }
             </div>
         </div>
-
     );
 };
 

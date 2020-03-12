@@ -3,7 +3,6 @@ import {QuizSubjects} from "./QuizSubject";
 import {QuizSection} from "./QuizSection";
 import QuizGame from "./QuizGame";
 
-
 export const Quiz = () => {
     const [subject, setSubject] = useState("");
     const [section, setSection] = useState("");
@@ -19,13 +18,9 @@ export const Quiz = () => {
                 ) : (
                     <QuizSection subject={subject} setSubject={setSubject} setSection={setSection}/>
                 )}
-
             </div>
-
         );
     }
-
-
 };
 
 

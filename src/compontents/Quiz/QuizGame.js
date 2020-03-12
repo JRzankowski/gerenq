@@ -53,8 +53,6 @@ export default class QuizGame extends Component {
         }
     };
 
-
-
     render() {
 
         const {subject, section} = this.props;
