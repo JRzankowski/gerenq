@@ -83,51 +83,191 @@
       @media(min-width: 750px) {
         font-size: 1.2rem;
       }
-      &.correct{
+
+      &.correct {
         border: 1px solid green;
         color: green;
-        &:hover{
+
+        &:hover {
           border: 1px solid green;
           color: green;
         }
       }
-      &.incorrect{
+
+      &.incorrect {
         border: 1px solid red;
         color: red;
-        &:hover{
+
+        &:hover {
           border: 1px solid red;
           color: red;
         }
       }
-      &.disable{
+
+      &.disable {
         pointer-events: none;
       }
 
       &:hover {
-        background-color: #25282e;
-        border: 1px solid $primaryBlue;
-        color: $primaryBlue;
+        @media(min-width: 700px){
+          background-color: #25282e;
+          border: 1px solid $primaryBlue;
+          color: $primaryBlue;
+        }
       }
-
-      //&__container {
-      //  //position: relative;
-      //  //z-index: -2;
-      //  height: auto;
-      //}
-      //
-      //&__content {
-      //  color: #bbbbbb;
-      //  width: 100%;
-      //  text-align: center;
-      //  line-height: 1.3;
-      //  font-family: $font-base;
-      //
-      //  @media(min-width: 750px) {
-      //    font-size: 1.2rem;
-      //  }
-      //}
-
-
     }
   }
-}
+
+  &__summary {
+    height: 100%;
+    box-sizing: border-box;
+    color: white;
+    width: 100%;
+    border-radius: .625rem;
+    background-color: $primaryBlack;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: left;
+
+  }
+
+  .summary__heading {
+    font-weight: 400;
+    font-size: 2rem;
+    margin: 0;
+    @media(min-width: 700px) {
+      font-size: 2.5rem;
+    }
+
+  }
+
+  .summary__score {
+    margin-bottom: 20px;
+    color: #bbbb;
+    @media(min-width: 700px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .summary__question-check {
+    height: 100%;
+
+
+    p {
+      font-size: .9rem;
+      font-weight: 300;
+      margin: 0;
+      @media(min-width: 400px) {
+        font-size: 1.1rem;
+      }
+      @media(min-width: 700px) {
+        font-size: 1.4rem;
+      }
+    }
+
+    .summary__question--correct,
+    .summary__question--incorrect {
+      margin-left: 5px;
+    }
+
+    .summary__question--correct {
+      color: green;
+    }
+
+    .summary__question--incorrect {
+      color: red;
+    }
+
+    span {
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      top: 2px;
+      margin-left: 7px;
+      @media(min-width: 400px) {
+        font-size: 1.2rem;
+      }
+    }
+
+  }
+
+
+    .quiz-game__summary-question {
+      height: 60%;
+      box-sizing: border-box;
+      color: white;
+      width: 100%;
+      border-radius: .625rem;
+      background-color: $primaryBlack;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      span {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 1.5rem;
+        color: #bbbb;
+        cursor: pointer;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      .summary__question {
+        width: 100%;
+        text-align: center;
+        line-height: 1.3;
+        font-family: $font-base;
+        @media(min-width: 750px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+      .summary__answers {
+        display: grid;
+        margin-top: 10px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+      }
+      .summary__answer {
+        width: 100%;
+        background-color: $primaryBlack;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: .625rem;
+        transition: .1s;
+        cursor: unset;
+        border: 1px solid transparent;
+        color: #bbbbbb;
+        text-align: center;
+        line-height: 1.3;
+        font-family: $font-base;
+        padding: 18px 0;
+        pointer-events: auto;
+        &.correct{
+          border: 1px solid green;
+          color: green;
+        }
+        &.incorrect{
+          border: 1px solid red;
+          color: red;
+        }
+
+        @media(min-width: 750px) {
+          font-size: 1.2rem;
+        }
+      }
+
+  }
+

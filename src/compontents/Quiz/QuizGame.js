@@ -1,13 +1,13 @@
 import React, {Component, useEffect, useState} from 'react';
 import axios from 'axios'
 import QuizGameQuestion from "./QuizGameQuestion";
+import QuizGameSummary from "./QuizGameSummary";
+
 
 export default class QuizGame extends Component {
     state = {
         quizQuestionIterator: 0,
         quizInfo: []
-
-
     };
     setQuestionIterator = () => {
         this.setState({
@@ -15,19 +15,13 @@ export default class QuizGame extends Component {
         })
     };
     setQuizInfo = (e) => {
-        this.setState( {
-            quizInfo: [...this.state.quizInfo, e.dataset.answer === this.state.quizData[this.state.quizQuestionIterator].correct_answer ? "correct" : "incorrect"]
-            // quizInfo: this.state.quizInfo.push(e.dataset.answer === this.state.quizData[this.state.quizQuestionIterator].correct_answer ? "correct" : "incorrect")
+        this.setState({
+            quizInfo: [...this.state.quizInfo, e.dataset.answer === this.state.quizData[this.state.quizQuestionIterator].correct_answer ? "correct" : `incorrect ${e.dataset.answer}`]
+
 
         });
     };
 
-    // getQuestionStatus = (correctAnswer)=>{
-    //     if(correctAnswer === this.state.quizData[this.state.quizQuestionIterator].correct_answer){
-    //         return
-    //     }
-    //
-    // };
     componentDidMount = () => {
         let category = "";
         if (this.props.subject === "Math") {
@@ -60,36 +54,43 @@ export default class QuizGame extends Component {
     };
 
 
+
     render() {
 
-
         const {subject, section} = this.props;
-
-        return (
-            <div className="quiz-game">
-                <div className="quiz-game__question">
-                    <h3 className="question__heading">
-                        {subject},{section}, Question {this.state.quizQuestionIterator+1}/10
-                    </h3>
-                    <p className='question__content'>
-                        {this.state.quizData ? this.state.quizData[this.state.quizQuestionIterator].question : null}
-                    </p>
+        if (this.state.quizQuestionIterator !== 10) {
+            return (
+                <div className="quiz-game">
+                    <div className="quiz-game__question">
+                        <h3 className="question__heading">
+                            {subject},{section}, Question {this.state.quizQuestionIterator + 1}/10
+                        </h3>
+                        <p className='question__content'>
+                            {this.state.quizQuestionIterator !== 10 ? this.state.quizData ? this.state.quizData[this.state.quizQuestionIterator].question : null : null}
+                        </p>
+                    </div>
+                    <div className="quiz-game__answers">
+                        {this.state.quizData ? (
+                            this.setAnswers().map((value, index) => {
+                                return (
+                                    <QuizGameQuestion setQuestionIterator={this.setQuestionIterator}
+                                                      quizQuestionIterator={this.state.quizQuestionIterator}
+                                                      setQuizInfo={this.setQuizInfo}
+                                                      correctAnswer={this.state.quizData[this.state.quizQuestionIterator].correct_answer}
+                                                      key={index} answer={value}/>
+                                )
+                            })
+                        ) : null
+                        }
+                    </div>
                 </div>
-                <div className="quiz-game__answers">
-                    {this.state.quizData ? (
-                        this.setAnswers().map((value, index) => {
-                            return (
-                                <QuizGameQuestion setQuestionIterator={this.setQuestionIterator}
-                                                  quizQuestionIterator={this.state.quizQuestionIterator}
-                                                  setQuizInfo={this.setQuizInfo} correctAnswer={this.state.quizData[this.state.quizQuestionIterator].correct_answer} key={index} answer={value}/>
-                            )
-                        })
-                    ) : null
-                    }
+            );
+        } else {
+            return (
+               <QuizGameSummary quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
+            )
+        }
 
-                </div>
-            </div>
-        );
     }
 
 }
