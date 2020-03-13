@@ -8,7 +8,7 @@ export const Quiz = () => {
     const [section, setSection] = useState("");
     if (subject && section) {
         return (
-            <QuizGame subject={subject} section={section}/>
+            <QuizGame subject={subject} section={section} setSubject={setSubject} setSection={setSection}/>
         )
     } else {
         return (

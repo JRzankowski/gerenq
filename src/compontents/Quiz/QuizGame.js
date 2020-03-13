@@ -24,12 +24,16 @@ export default class QuizGame extends Component {
 
     componentDidMount = () => {
         let category = "";
-        if (this.props.subject === "Math") {
-            category = "19";
+        if (this.props.subject === "Art") {
+            category = "25";
         } else if (this.props.subject === "History") {
             category = "23";
         } else if (this.props.subject === "Geography") {
             category = "22";
+        }else if (this.props.subject === "Mythology") {
+            category = "20";
+        }else if (this.props.subject === "Animals") {
+            category = "27";
         }
 
         axios
@@ -37,10 +41,9 @@ export default class QuizGame extends Component {
             .then(({data}) => this.setState({quizData: data.results}))
     };
 
-    setAnswers = () => {
-        if (this.state.quizData) {
-            let answersArray = [...this.state.quizData[this.state.quizQuestionIterator].incorrect_answers];
-            answersArray.push(this.state.quizData[this.state.quizQuestionIterator].correct_answer);
+    setAnswers = (questionNumber) => {
+            let answersArray = [...this.state.quizData[questionNumber].incorrect_answers];
+            answersArray.push(this.state.quizData[questionNumber].correct_answer);
             let ctr = answersArray.length, temp, index;
             if (ctr > 0) {
                 index = Math.floor(Math.random() * ctr);
@@ -50,11 +53,9 @@ export default class QuizGame extends Component {
                 answersArray[index] = temp;
             }
             return answersArray
-        }
+
     };
-
     render() {
-
         const {subject, section} = this.props;
         if (this.state.quizQuestionIterator !== 10) {
             return (
@@ -69,7 +70,7 @@ export default class QuizGame extends Component {
                     </div>
                     <div className="quiz-game__answers">
                         {this.state.quizData ? (
-                            this.setAnswers().map((value, index) => {
+                            this.setAnswers(this.state.quizQuestionIterator).map((value, index) => {
                                 return (
                                     <QuizGameQuestion setQuestionIterator={this.setQuestionIterator}
                                                       quizQuestionIterator={this.state.quizQuestionIterator}
@@ -85,7 +86,7 @@ export default class QuizGame extends Component {
             );
         } else {
             return (
-               <QuizGameSummary quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
+               <QuizGameSummary setSection={this.props.setSection} setSubject={this.props.setSubject} setAnswers={this.setAnswers} quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
             )
         }
 

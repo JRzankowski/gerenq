@@ -30,7 +30,7 @@ export default class QuizGameQuestion extends Component {
                     el.classList.remove('disable', 'correct', 'incorrect')
                 }
                 this.props.setQuestionIterator()
-            }, 1000)
+            }, 10)
         }
     };
 

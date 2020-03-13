@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react';
 import {TiArrowForward} from 'react-icons/ti'
-import QuizGameQuestion from "./QuizGameQuestion";
+import {IoMdClose, IoMdOpen} from 'react-icons/io'
+import {QuizGameSummaryQuestion} from "./QuizGameSummaryQuestion";
 
 export default class QuizGameSummary extends Component {
     state = {
@@ -15,9 +16,9 @@ export default class QuizGameSummary extends Component {
     };
     setQuestionPanel = (e) => {
         e.stopPropagation();
-        console.log(e.target)
+        console.log(e.target);
         this.setState({
-            questionPanel: !this.state.questionPanel,
+            questionPanel: true,
             questionNumber: e.target.previousElementSibling.dataset.index,
             questionAnswer: e.target.previousElementSibling.dataset.answer
         })
@@ -33,14 +34,27 @@ export default class QuizGameSummary extends Component {
             return score;
         }
     };
+    handleQuit = () => {
+        this.props.setSection("");
+        this.props.setSubject("");
+    };
+
+    isCorrect = (value) => {
+        if (value === this.state.questionAnswer.trim()) {
+            return "incorrect"
+        } else if (value === this.props.quizData[this.state.questionNumber].correct_answer) {
+            return "correct"
+        }
+    };
 
 
     render() {
         const {answer} = this.props;
         return (
             <div className="quiz-game">
-                {!this.state.questionPanel ? (
-                    <div className="quiz-game__summary">
+
+                <div className="quiz-game__summary">
+                    <div className="quiz-game__summary-container">
                         <h3 className="summary__heading">Summary</h3>
                         <p className='summary__score'>Your score: <span>
                             {this.setSummary()}/10
@@ -59,36 +73,22 @@ export default class QuizGameSummary extends Component {
                             })
                         }
                     </div>
-                ) : (
-                    <>
-                        <div className="quiz-game__summary-question">
-                            <span onClick={this.handleExitQuestion} className="question__back">X</span>
-                            <p className='summary__question'>
-                                {this.props.quizData[this.state.questionNumber].question}
-                            </p>
-                        </div>
-                        <div className="summary__answers">
-                            <div data-answer={this.props.quizData[this.state.questionNumber].incorrect_answers[0]}
-                                 className={`summary__answer ${this.props.quizData[this.state.questionNumber].incorrect_answers[0] === this.state.questionAnswer.trim() ? 'incorrect' : null}`}>
-                                {this.props.quizData[this.state.questionNumber].incorrect_answers[0]}
-                            </div>
-                            <div data-answer={this.props.quizData[this.state.questionNumber].incorrect_answers[1]}
-                                 className={`summary__answer ${this.props.quizData[this.state.questionNumber].incorrect_answers[1] === this.state.questionAnswer.trim() ? 'incorrect' : null}`}>
-                                {this.props.quizData[this.state.questionNumber].incorrect_answers[1]}
-                            </div>
-                            <div data-answer={this.props.quizData[this.state.questionNumber].incorrect_answers[2]}
-                                 className={`summary__answer ${this.props.quizData[this.state.questionNumber].incorrect_answers[2] === this.state.questionAnswer.trim() ? 'incorrect' : null}`}>
-                                {this.props.quizData[this.state.questionNumber].incorrect_answers[2]}
-                            </div>
-                            <div data-answer={this.props.quizData[this.state.questionNumber].correct_answer}
-                                 className="summary__answer correct">
-                                {this.props.quizData[this.state.questionNumber].correct_answer}
-                            </div>
-                        </div>
-                    </>
+                    {
+                        this.state.questionPanel ? (
+                            <div className="quiz-game__summary-question-container">
+                                <QuizGameSummaryQuestion handleExitQuestion={this.handleExitQuestion}
+                                                         quizData={this.props.quizData}
+                                                         questionNumber={this.state.questionNumber}
+                                                         setAnswers={this.props.setAnswers}
+                                                         isCorrect={this.isCorrect}
+                                                         isActive={this.state.questionPanel ? 'active' : ''}/>
 
-                )
-                }
+                            </div>
+                        ) : null
+                    }
+                    <button onClick={this.handleQuit} className="quiz-game__summary-btn">Quit</button>
+                </div>
+
             </div>
         );
     }
