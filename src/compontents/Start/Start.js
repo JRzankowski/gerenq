@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const Start = () => {
-    const [userName, setUserName] = useState("John");
+const Start = (props) => {
+const {userEmail} = props;
     return (
         <div className="start-panel">
             <div className="start-panel__container">
                 <div className="start-panel__heading">
-                    <p className="start-panel__heading--text">Hello, <span className="user-name">{userName}</span> !</p>
+                    <p className="start-panel__heading--text">Hello, <span className="user-name">{userEmail}</span> !</p>
                 </div>
                 <div className="start-panel__content">
                 </div>

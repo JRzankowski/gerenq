@@ -1,10 +1,68 @@
+.main-panel__entry {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 123;
+  background-color: $primaryBlack;
+  border-radius: .625rem;
+  text-align: center;
+  width: 200px;
+  height: 150px;
+  display: flex;
+  padding: 0 20px;
+  justify-content: center;
+  align-items: center;
+  .entry__label {
+    display: block;
+    width: 100%;
+    color: white;
+  }
+  .entry__input {
+    width: 100px;
+    margin: 10px auto 20px;
+    display: block;
+    background: none;
+    border: 1px solid #bbbbbb;
+    border-radius: 1rem;
+    outline: none;
+    user-select: none;
+    padding: 5px 10px;
+    color: white;
+    transition: .1s;
+    &:focus {
+      border: 1px solid $primaryBlue;
+    }
+  }
+  .entry__submit {
+    color: #bbbbbb;
+    background-color: $primaryBlack;
+    border: 1px solid #bbbbbb;
+    border-radius: .625rem;
+    padding: 5px 10px;
+    transition: .1s;
+    cursor: pointer;
 
+    &:hover {
+      border: 1px solid $primaryBlue;
+      color: $primaryBlue;
+    }
+
+  }
+
+}
 .main-view {
   position: relative;
   width: 100%;
   height: 100vh;
   background-color: $primaryDarkBlack;
   display: flex;
+
+  &.darker {
+    filter: brightness(0.4);
+    pointer-events: none;
+  }
+
   .main-panel {
     flex-grow: 1;
     transition: .2s;
@@ -12,11 +70,15 @@
     width: 100%;
 
 
+
+
   }
-  .main-panel.darker{
+
+  .main-panel.darker {
     filter: brightness(0.4);
     cursor: pointer
   }
+
   .nav-burger {
     display: none;
     @media(max-width: 920px) {
@@ -25,13 +87,14 @@
       cursor: pointer;
       left: 25px;
       top: 10px;
-      z-index:5;
+      z-index: 5;
 
       svg {
         font-size: 2.5rem;
         color: #bbbbbb;
         transition: .1s;
-        &:hover{
+
+        &:hover {
           color: $primaryBlue;
         }
       }
