@@ -1,4 +1,5 @@
 import React, {Component, useState} from 'react';
+
 import {TiArrowForward} from 'react-icons/ti'
 import {IoMdClose, IoMdOpen} from 'react-icons/io'
 import {QuizGameSummaryQuestion} from "./QuizGameSummaryQuestion";
@@ -8,6 +9,9 @@ export default class QuizGameSummary extends Component {
         questionPanel: false,
         questionNumber: null,
         questionAnswer: null,
+
+        score: null
+
     };
     handleExitQuestion = () => {
         this.setState({
@@ -21,7 +25,9 @@ export default class QuizGameSummary extends Component {
             questionPanel: true,
             questionNumber: e.target.previousElementSibling.dataset.index,
             questionAnswer: e.target.previousElementSibling.dataset.answer
-        })
+        });
+
+
     };
     setSummary = () => {
         let score = 0;
@@ -31,12 +37,32 @@ export default class QuizGameSummary extends Component {
                     score++
                 }
             }
+            if (!this.state.score) {
+                this.setState({
+                    score: score
+                });
+            }
             return score;
         }
     };
     handleQuit = () => {
         this.props.setSection("");
         this.props.setSubject("");
+
+        if (localStorage.getItem(`${this.props.subject}${this.props.section}`)) {
+            let correctAnswers = parseInt(localStorage.getItem(`${this.props.subject}${this.props.section}`)) + this.state.score;
+            localStorage.setItem(`${this.props.subject}${this.props.section}`, `${correctAnswers}`)
+        } else {
+            localStorage.setItem(`${this.props.subject}${this.props.section}`, `${this.state.score}`)
+        }
+        if (localStorage.getItem(`${this.props.subject}${this.props.section}Count`)) {
+            let iterator = parseInt(localStorage.getItem(`${this.props.subject}${this.props.section}Count`)) + 1;
+            localStorage.setItem(`${this.props.subject}${this.props.section}Count`, `${iterator}`)
+        } else {
+            localStorage.setItem(`${this.props.subject}${this.props.section}Count`, `1`)
+        }
+
+
     };
 
     isCorrect = (value) => {
@@ -49,6 +75,8 @@ export default class QuizGameSummary extends Component {
 
 
     render() {
+
+
         const {answer} = this.props;
         return (
             <div className="quiz-game">
@@ -58,6 +86,7 @@ export default class QuizGameSummary extends Component {
                         <h3 className="summary__heading">Summary</h3>
                         <p className='summary__score'>Your score: <span>
                             {this.setSummary()}/10
+
                         </span></p>
                         {
                             this.props.quizInfo.map((value, index) => {

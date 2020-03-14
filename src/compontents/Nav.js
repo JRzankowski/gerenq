@@ -28,7 +28,9 @@ export default class Nav extends Component {
     isActive = (itemName) => {
         this.setState({
             activeItem: itemName
-        })
+        });
+        document.querySelector('.nav-container').classList.remove('active');
+        document.querySelector('.main-panel').classList.remove('darker')
     };
 
     render() {

@@ -86,7 +86,7 @@ export default class QuizGame extends Component {
             );
         } else {
             return (
-               <QuizGameSummary setSection={this.props.setSection} setSubject={this.props.setSubject} setAnswers={this.setAnswers} quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
+               <QuizGameSummary subject ={this.props.subject} section={this.props.section} setSection={this.props.setSection} setSubject={this.props.setSubject} setAnswers={this.setAnswers} quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
             )
         }
 
