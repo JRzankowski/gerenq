@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Start = (props) => {
-const {userEmail} = props;
+    const {userEmail} = props;
     return (
         <div className="start-panel">
             <div className="start-panel__container">

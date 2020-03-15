@@ -61,6 +61,19 @@ export default class QuizGameSummary extends Component {
         } else {
             localStorage.setItem(`${this.props.subject}${this.props.section}Count`, `1`)
         }
+        let existing = localStorage.getItem('AvailableSummaries');
+        if(existing){
+            if (existing.split(',').indexOf(`${this.props.subject}`) === -1) {
+                existing = existing ? existing.split(',') : [];
+                existing.push(`${this.props.subject}`);
+                localStorage.setItem('AvailableSummaries', existing.toString());
+            }
+        }else{
+            existing = existing ? existing.split(',') : [];
+            existing.push(`${this.props.subject}`);
+            localStorage.setItem('AvailableSummaries', existing.toString());
+        }
+
 
 
     };

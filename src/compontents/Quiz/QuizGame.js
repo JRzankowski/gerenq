@@ -34,6 +34,12 @@ export default class QuizGame extends Component {
             category = "20";
         }else if (this.props.subject === "Animals") {
             category = "27";
+        }else if(this.props.subject ==="Computers"){
+            category = "18"
+        }else if(this.props.subject ==="Sports"){
+            category = "21"
+        }else if(this.props.subject ==="General Knowledge"){
+            category = "9"
         }
 
         axios

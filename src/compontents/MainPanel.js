@@ -3,6 +3,7 @@ import {Redirect} from "react-router-dom";
 import Nav from './Nav'
 import Start from "./Start/Start";
 import {Quiz} from "./Quiz/Quiz";
+import Summary from "./Summary/Summary";
 import SmallAccountBox from "./smallAccountBox";
 import {IoIosMenu} from 'react-icons/io'
 import {
@@ -59,6 +60,9 @@ export const MainPanel =()=> {
                         </Route>
                         <Route path='/Quiz'>
                             <Quiz/>
+                        </Route>
+                        <Route path='/Summary'>
+                            <Summary/>
                         </Route>
 
                     </div>

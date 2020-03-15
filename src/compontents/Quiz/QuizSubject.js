@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 export const QuizSubjects = (props) => {
-    const [subjects, setSubjects] = useState(["Mythology", "History","Animals"]);
+    const [subjects, setSubjects] = useState(["Mythology", "History","Animals","Computers","Sports"]);
     return (
         <div className="quiz-panel__container">
             <div className="quiz-panel__heading">

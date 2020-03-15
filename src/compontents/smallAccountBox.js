@@ -7,7 +7,7 @@ export default class SmallAccountBox extends Component {
         return (
             <div className="account-box">
                 <p className="account-box__email"> {this.props.userEmail}</p>
-                <button className="account-box__log-out">Wyloguj</button>
+                <button className="account-box__log-out">Log out</button>
             </div>
         );
     }
