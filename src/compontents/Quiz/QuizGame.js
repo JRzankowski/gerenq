@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import QuizGameQuestion from "./QuizGameQuestion";
 import QuizGameSummary from "./QuizGameSummary";
+import {LoadingBar} from "./LoadingBar";
 
 export default class QuizGame extends Component {
     state = {
         quizQuestionIterator: 0,
-        quizInfo: []
+        quizInfo: [],
+        loading: false
     };
     setQuestionIterator = () => {
         this.setState({
@@ -39,9 +41,14 @@ export default class QuizGame extends Component {
             category = "9"
         }
 
-        axios
-            .get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${this.props.section.toLowerCase()}&type=multiple`)
-            .then(({data}) => this.setState({quizData: data.results}))
+
+        this.setState({loading: true}, () => {
+            axios
+                .get(`https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${this.props.section.toLowerCase()}&type=multiple`)
+                .then(({data}) => this.setState({quizData: data.results, loading: false}))
+        })
+
+
     };
 
     setAnswers = (questionNumber) => {
@@ -60,6 +67,8 @@ export default class QuizGame extends Component {
 
     render() {
         const {subject, section} = this.props;
+
+
         if (this.state.quizQuestionIterator !== 10) {
             return (
                 <div className="quiz-game">
@@ -68,21 +77,27 @@ export default class QuizGame extends Component {
                             {subject},{section}, Question {this.state.quizQuestionIterator + 1}/10
                         </h3>
                         <p className='question__content'>
-                            {this.state.quizQuestionIterator !== 10 ? this.state.quizData ? this.state.quizData[this.state.quizQuestionIterator].question : null : null}
+                            {this.state.loading ? (
+                              <LoadingBar/>
+                            ) : (
+                                this.state.quizQuestionIterator !== 10 ? this.state.quizData ? this.state.quizData[this.state.quizQuestionIterator].question : null : null
+                            )
+                            }
                         </p>
                     </div>
                     <div className="quiz-game__answers">
-                        {this.state.quizData ? (
-                            this.setAnswers(this.state.quizQuestionIterator).map((value, index) => {
-                                return (
-                                    <QuizGameQuestion setQuestionIterator={this.setQuestionIterator}
-                                                      quizQuestionIterator={this.state.quizQuestionIterator}
-                                                      setQuizInfo={this.setQuizInfo}
-                                                      correctAnswer={this.state.quizData[this.state.quizQuestionIterator].correct_answer}
-                                                      key={index} answer={value}/>
-                                )
-                            })
-                        ) : null
+                        {
+                            this.state.quizData ? (
+                                this.setAnswers(this.state.quizQuestionIterator).map((value, index) => {
+                                    return (
+                                        <QuizGameQuestion setQuestionIterator={this.setQuestionIterator}
+                                                          quizQuestionIterator={this.state.quizQuestionIterator}
+                                                          setQuizInfo={this.setQuizInfo}
+                                                          correctAnswer={this.state.quizData[this.state.quizQuestionIterator].correct_answer}
+                                                          key={index} answer={value}/>
+                                    )
+                                })
+                            ) : null
                         }
                     </div>
                 </div>
@@ -96,6 +111,7 @@ export default class QuizGame extends Component {
             )
         }
     }
+
 }
 
 
