@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import logo from '../assets/logo.png'
 import NavItem from './NavItem'
-import {
-    BrowserRouter as Router,
-} from "react-router-dom";
 
 export default class Nav extends Component {
     state = {
@@ -43,14 +40,13 @@ export default class Nav extends Component {
                                 <img alt='logo gerenq' className='logo__container--img' src={logo}/>
                             </div>
                         </div>
-                            <NavItem itemName='Start' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Quiz' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Summary' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Options' activeItem={this.state.activeItem} isActive={this.isActive}/>
-                            <NavItem itemName='Lorem' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                        <NavItem itemName='Start' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                        <NavItem itemName='Quiz' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                        <NavItem itemName='Summary' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                        <NavItem itemName='Options' activeItem={this.state.activeItem} isActive={this.isActive}/>
+                        <NavItem itemName='Lorem' activeItem={this.state.activeItem} isActive={this.isActive}/>
                     </nav>
                 </div>
-
             </>
         );
     }

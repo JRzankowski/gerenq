@@ -1,9 +1,6 @@
-import React, {Component, useState} from 'react';
-
+import React, {Component} from 'react';
 
 export default class QuizGameQuestion extends Component {
-
-
     handleClick = (e) => {
         if (this.props.quizQuestionIterator !== 10) {
             for (let el of document.querySelectorAll('.answer')) {
@@ -33,7 +30,6 @@ export default class QuizGameQuestion extends Component {
             }, 10)
         }
     };
-
 
     render() {
         const {answer} = this.props;

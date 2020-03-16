@@ -1,7 +1,4 @@
-import React, {Component, useState} from 'react';
-
-import {TiArrowForward} from 'react-icons/ti'
-import {IoMdClose, IoMdOpen} from 'react-icons/io'
+import React, {Component} from 'react';
 import {QuizGameSummaryQuestion} from "./QuizGameSummaryQuestion";
 
 export default class QuizGameSummary extends Component {
@@ -9,9 +6,7 @@ export default class QuizGameSummary extends Component {
         questionPanel: false,
         questionNumber: null,
         questionAnswer: null,
-
         score: null
-
     };
     handleExitQuestion = () => {
         this.setState({
@@ -26,8 +21,6 @@ export default class QuizGameSummary extends Component {
             questionNumber: e.target.previousElementSibling.dataset.index,
             questionAnswer: e.target.previousElementSibling.dataset.answer
         });
-
-
     };
     setSummary = () => {
         let score = 0;
@@ -48,7 +41,6 @@ export default class QuizGameSummary extends Component {
     handleQuit = () => {
         this.props.setSection("");
         this.props.setSubject("");
-
         if (localStorage.getItem(`${this.props.subject}${this.props.section}`)) {
             let correctAnswers = parseInt(localStorage.getItem(`${this.props.subject}${this.props.section}`)) + this.state.score;
             localStorage.setItem(`${this.props.subject}${this.props.section}`, `${correctAnswers}`)
@@ -62,22 +54,18 @@ export default class QuizGameSummary extends Component {
             localStorage.setItem(`${this.props.subject}${this.props.section}Count`, `1`)
         }
         let existing = localStorage.getItem('AvailableSummaries');
-        if(existing){
+        if (existing) {
             if (existing.split(',').indexOf(`${this.props.subject}`) === -1) {
                 existing = existing ? existing.split(',') : [];
                 existing.push(`${this.props.subject}`);
                 localStorage.setItem('AvailableSummaries', existing.toString());
             }
-        }else{
+        } else {
             existing = existing ? existing.split(',') : [];
             existing.push(`${this.props.subject}`);
             localStorage.setItem('AvailableSummaries', existing.toString());
         }
-
-
-
     };
-
     isCorrect = (value) => {
         if (value === this.state.questionAnswer.trim()) {
             return "incorrect"
@@ -86,11 +74,7 @@ export default class QuizGameSummary extends Component {
         }
     };
 
-
     render() {
-
-
-        const {answer} = this.props;
         return (
             <div className="quiz-game">
 
@@ -99,7 +83,6 @@ export default class QuizGameSummary extends Component {
                         <h3 className="summary__heading">Summary</h3>
                         <p className='summary__score'>Your score: <span>
                             {this.setSummary()}/10
-
                         </span></p>
                         {
                             this.props.quizInfo.map((value, index) => {
@@ -124,13 +107,11 @@ export default class QuizGameSummary extends Component {
                                                          setAnswers={this.props.setAnswers}
                                                          isCorrect={this.isCorrect}
                                                          isActive={this.state.questionPanel ? 'active' : ''}/>
-
                             </div>
                         ) : null
                     }
                     <button onClick={this.handleQuit} className="quiz-game__summary-btn">Quit</button>
                 </div>
-
             </div>
         );
     }

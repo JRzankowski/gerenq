@@ -5,6 +5,7 @@
   background-color: $primaryDarkBlack;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
   @media(max-width: 920px) {
     font-size: .9rem;
   }

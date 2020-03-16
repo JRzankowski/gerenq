@@ -8,7 +8,6 @@ export const QuizSection = (props) => {
             props.setSubject("")
         }
     };
-
     return (
         <div className="quiz-panel__container">
             <div className="quiz-panel__heading">

@@ -1,7 +1,6 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {SummarySubject} from "./SummarySubject";
 import {SummarySubjectInfo} from "./SummarySubjectInfo";
-
 
 export default class Summary extends Component {
     state = {
@@ -21,13 +20,10 @@ export default class Summary extends Component {
             );
         } else {
             return (
-                <SummarySubjectInfo subject={this.state.subject}/>
+                <SummarySubjectInfo setSubject={this.setSubject} subject={this.state.subject}/>
             )
         }
-
     }
-
-
 };
 
 

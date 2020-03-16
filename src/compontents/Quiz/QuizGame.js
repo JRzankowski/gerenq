@@ -1,8 +1,7 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios'
 import QuizGameQuestion from "./QuizGameQuestion";
 import QuizGameSummary from "./QuizGameSummary";
-
 
 export default class QuizGame extends Component {
     state = {
@@ -17,8 +16,6 @@ export default class QuizGame extends Component {
     setQuizInfo = (e) => {
         this.setState({
             quizInfo: [...this.state.quizInfo, e.dataset.answer === this.state.quizData[this.state.quizQuestionIterator].correct_answer ? "correct" : `incorrect ${e.dataset.answer}`]
-
-
         });
     };
 
@@ -30,15 +27,15 @@ export default class QuizGame extends Component {
             category = "23";
         } else if (this.props.subject === "Geography") {
             category = "22";
-        }else if (this.props.subject === "Mythology") {
+        } else if (this.props.subject === "Mythology") {
             category = "20";
-        }else if (this.props.subject === "Animals") {
+        } else if (this.props.subject === "Animals") {
             category = "27";
-        }else if(this.props.subject ==="Computers"){
+        } else if (this.props.subject === "Computers") {
             category = "18"
-        }else if(this.props.subject ==="Sports"){
+        } else if (this.props.subject === "Sports") {
             category = "21"
-        }else if(this.props.subject ==="General Knowledge"){
+        } else if (this.props.subject === "General Knowledge") {
             category = "9"
         }
 
@@ -48,19 +45,19 @@ export default class QuizGame extends Component {
     };
 
     setAnswers = (questionNumber) => {
-            let answersArray = [...this.state.quizData[questionNumber].incorrect_answers];
-            answersArray.push(this.state.quizData[questionNumber].correct_answer);
-            let ctr = answersArray.length, temp, index;
-            if (ctr > 0) {
-                index = Math.floor(Math.random() * ctr);
-                ctr--;
-                temp = answersArray[ctr];
-                answersArray[ctr] = answersArray[index];
-                answersArray[index] = temp;
-            }
-            return answersArray
-
+        let answersArray = [...this.state.quizData[questionNumber].incorrect_answers];
+        answersArray.push(this.state.quizData[questionNumber].correct_answer);
+        let ctr = answersArray.length, temp, index;
+        if (ctr > 0) {
+            index = Math.floor(Math.random() * ctr);
+            ctr--;
+            temp = answersArray[ctr];
+            answersArray[ctr] = answersArray[index];
+            answersArray[index] = temp;
+        }
+        return answersArray
     };
+
     render() {
         const {subject, section} = this.props;
         if (this.state.quizQuestionIterator !== 10) {
@@ -92,12 +89,13 @@ export default class QuizGame extends Component {
             );
         } else {
             return (
-               <QuizGameSummary subject ={this.props.subject} section={this.props.section} setSection={this.props.setSection} setSubject={this.props.setSubject} setAnswers={this.setAnswers} quizInfo={this.state.quizInfo} quizData={this.state.quizData} />
+                <QuizGameSummary subject={this.props.subject} section={this.props.section}
+                                 setSection={this.props.setSection} setSubject={this.props.setSubject}
+                                 setAnswers={this.setAnswers} quizInfo={this.state.quizInfo}
+                                 quizData={this.state.quizData}/>
             )
         }
-
     }
-
 }
 
 

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {FaBeer} from 'react-icons/fa'
 
 export default class SmallAccountBox extends Component {
-
     render() {
         return (
             <div className="account-box">

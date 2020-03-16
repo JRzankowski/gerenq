@@ -5,9 +5,17 @@
   background-color: $primaryDarkBlack;
   justify-content: center;
   align-items: center;
+  animation: opacity .3s linear both;
+  @keyframes opacity {
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
   @media(max-width: 920px) {
     font-size: .9rem;
-
   }
 
   &__container {
@@ -26,6 +34,13 @@
       font-size: 2em;
       letter-spacing: .2px;
     }
+    .quiz-panel__heading--icon{
+      cursor: pointer;
+      transition: .1s;
+      &:hover{
+        color: #bbbbbb
+      }
+    }
 
   }
 
@@ -38,6 +53,12 @@
     font-size: 1.5em;
     flex-wrap: wrap;
     margin-top: 20px;
+    .summary-panel__content--error{
+
+      font-weight: 300;
+      color: #818181;
+      font-size: 1rem;
+    }
 
   }
 
@@ -67,10 +88,17 @@
 .summary-panel__info {
   height: auto;
   .summary-panel__container {
-
     height: 100%;
+    @media (min-width: 630px){
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
 
     .summary-panel__heading {
+      @media (min-width: 630px){
+        width: 100%;
+      }
 
       &--text {
         margin-bottom: 0;
@@ -80,6 +108,14 @@
 
     .summary-panel__content {
       margin-top: 50px;
+      @media (min-width: 630px){
+        width: 32%;
+      }
+      &.nodata{
+        filter: grayscale(1) ;
+      }
+
+
       .summary-info {
         text-align: center;
         background-color: $primaryBlack;
@@ -102,7 +138,7 @@
           }
         }
         &__chart{
-          width: 70%;
+          width: 160px;
           margin: 0 auto;
         }
         &__legend{

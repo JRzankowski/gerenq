@@ -1,10 +1,8 @@
-import React, {Component, useState} from 'react';
-
+import React from 'react';
 import {IoMdClose} from 'react-icons/io'
 
-
 export const QuizGameSummaryQuestion = (props) => {
-    const {handleExitQuestion,quizData,questionNumber,setAnswers,isCorrect} = props;
+    const {handleExitQuestion, quizData, questionNumber, setAnswers, isCorrect} = props;
     return (
         <>
             <div className="quiz-game__summary-question">
